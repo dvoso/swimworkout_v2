@@ -36,13 +36,13 @@ class Set:
                 # distance rather than a longer one for each item in a set
                 dist = math.floor((random.random()*(math.sqrt(yards)))**2)
                 # round down to the nearest 25 yards because that's a pool length
-                dist = dist - (dist % 25) + 25
+                dist = dist - (dist % 25)
             else:
                 dist = random.choice([50, 75, 100, 150])
 
             # if dist is above the max, set it equal to the max
-            if dist > yards:
-                dist = yards
+            if dist <= 25:
+                dist = 25
             # calculate how many reps can you do, and then choose a random # <= that
             max_reps = math.floor(yards / dist)
             reps = random.randint(1, max_reps)
