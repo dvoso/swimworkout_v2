@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Your Workout!</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="static/css/style.css">
+        <link rel="stylesheet" type="text/css" href="static/css/style.css?q={{ time }}" />
+    </head>
+    <body>
+        <h1>Swim Workout</h1>
+        {% for section in workout %}
+            <div class="card workout mx-auto" style="width: 18rem; margin: 20px;">
+                <div class="card-body">
+                    {% if section.set_type in ["warmup"] %}
+                        <h2 class="card-title">Warm Up</h2>
+                    {% endif %}
+                    {% if section.set_type in ["main set"] %}
+                        <h2 class="card-title">Main Set</h2>
+                    {% endif %}
+                    {% if section.set_type in ["cooldown"] %}
+                        <h2 class="card-title">Cool Down</h2>
+                    {% endif %}
+                    {% if section.num_rounds > 1 %}
+                        <h5>Repeat {{ section.num_rounds }} times</h5>
+                    {% endif %}
+                    {% for eachset in section.sets %}
+                        <p class="card-text">{{ eachset[0] }} x {{ eachset[1] }} {{ eachset[2] }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+                
+        <h4>Total distance: {{ total_dist }}</h4>
+        <a href="/index">Want another? Go back</a>
+    </body>
+</html>
