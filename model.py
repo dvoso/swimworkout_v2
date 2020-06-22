@@ -30,14 +30,19 @@ class Set:
     def create_set(self, yards):
         dist = 0
         while dist == 0:
-            # this transformation makes it more likely to choose a shorter
-            # distance rather than a longer one for each item in a set
-            dist = math.floor((random.random()*math.sqrt(math.sqrt(yards)))**4)
-            # round down to the nearest 25 yards because that's a pool length
-            dist = dist - (dist % 25)
-            # round up to 25 if it rounded down to 0
-            if dist == 0:
-                dist = 25
+            # half the time pick a random dist, half the time pick from the common distances
+            if random.random() > 0.5:
+                # this transformation makes it more likely to choose a shorter
+                # distance rather than a longer one for each item in a set
+                dist = math.floor((random.random()*(math.sqrt(yards)))**2)
+                # round down to the nearest 25 yards because that's a pool length
+                dist = dist - (dist % 25) + 25
+            else:
+                dist = random.choice([50, 75, 100, 150])
+
+            # if dist is above the max, set it equal to the max
+            if dist > yards:
+                dist = yards
             # calculate how many reps can you do, and then choose a random # <= that
             max_reps = math.floor(yards / dist)
             reps = random.randint(1, max_reps)
