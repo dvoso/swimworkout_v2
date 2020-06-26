@@ -1,16 +1,24 @@
-<html>
-    <head>
-        <title>Swim Workout Generator</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="static/css/style.css">
-        <link rel="stylesheet" type="text/css" href="static/css/style.css?q={{ time }}" />
-    </head>
-    <body>
+{% extends "base.html" %}
+
+{% block content %}
         <h1>Swim workout generator</h1>
         <p>Based on the number of yards/meters, we'll make you a workout</p>
         <form method="post" action="/results">
             <input type="number" name="dist" placeholder="Enter"/>
             <input type="submit" value="Submit"/>
         </form>
-    </body>
-</html>
+    
+    {% if session %}
+        <div class="login-signup-box">
+            <h3>Hello, {{ session['username'] }}!</h3>
+            <h5><a href="/practices/mypractices">View Saved Practices</a></h5>
+            <h5><a href="/logout">Logout</a></h5>
+        </div>
+        {% else %}
+        <div class="login-signup-box">
+            <p>You can save your workouts if you create an account!</p>
+            <p>Already have an account? <a href="/login">Log in.</a></p>
+            <p>No account? <a href="/signup">Sign up.</a></p>
+        </div>
+        {% endif %}
+{% endblock %}

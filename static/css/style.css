@@ -11,6 +11,14 @@ body {
     margin: 20px;
 }
 
-h1 {
-    color: blueviolet;
+.rename {
+    margin: 10%;
+}
+
+.login-signup-box {
+    padding: 15%;
+}
+
+.navbar {
+    background-color: blueviolet;
 }

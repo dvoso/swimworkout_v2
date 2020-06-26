@@ -1,9 +1,19 @@
 {% extends "base.html" %}
 
-{% block title %}Your Workout{% endblock %}
+{% block title %}
+        {% if practice.name %}
+            {{practice.name}}
+        {% else %}
+            {{practice.dist}} Yard Workout
+        {% endif %}
+{% endblock %}
 
 {% block content %}
-        <h1>Swim Workout</h1>
+        {% if practice.name %}
+            <h1>{{practice.name}}</h1>
+        {% else %}
+            <h1>{{practice.dist}} Yard Workout</h1>
+        {% endif %}
         {% for section in practice['workout'] %}
             <div class="card workout mx-auto" style="width: 18rem; margin: 20px;">
                 <div class="card-body">
@@ -28,14 +38,13 @@
                 
         <h4>Total distance: {{ practice['dist'] }}</h4>
 
-        {% if session %}
-
         <div class="rename">
             <form method="post" action="/practices/{{practice._id}}">
                 <div class="row justify-content-center">
                     <div class="form-group col-md-6 ">
-                        <label for="name">Name this practice in your saved lists</label>
+                        <label for="name">Rename this Practice</label>
                         <input type="text" class="form-control" name="name"/>
+                        
                     </div>
                 </div>
                 <div class="row justify-content-center">
@@ -43,8 +52,18 @@
                 </div>
             </form>
         </div>
-        {% endif %}
-        
-        <p><a href="/index">Want another? Go back</a></p>
 
-{% endblock %}
+        <div class="delete">
+            <form method="post" action="/practices/{{practice._id}}">
+                <div class="row justify-content-center">
+                    <p>Delete this Practice. </p>
+                    <p>(This cannot be undone)</p>
+                </div>
+                <div class="row justify-content-center">
+                    <button name="delete" type="submit" class="btn btn-primary" value="delete">Delete</button>     
+                </div>
+            </form>
+        
+
+
+{% endblock %}}

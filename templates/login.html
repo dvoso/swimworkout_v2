@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Log in! Swim Workout Generator{% endblock %}
+
+{% block content %}
+        <h1>Log in</h1>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" name="username">
+            </div>
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password">
+            <div class="form-group">
+            </div>
+            <button type="submit" class="btn btn-primary" value="Sign Up">Log In</button>
+        </form>
+{% endblock %}

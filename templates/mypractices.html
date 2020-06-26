@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}My Practices{% endblock %}
+
+{% block content %}
+        <h1>My Practices</h1>
+        <div>
+            <ul class="list-group">
+            {% for practice in practices %}
+                {% if practice.name %}
+                    <li class="list-group-item"><a href="/practices/{{practice._id}}">{{ practice.name }}</a></li>
+                {% else %}
+                    <li class="list-group-item"><a href="/practices/{{practice._id}}">{{ practice.dist }} yard workout</a></li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        </div>
+
+{% endblock %}

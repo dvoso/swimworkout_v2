@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>{% block title %}Swim Workout Generator{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}?q={{ time }}" />
+    </head>
+    <body>
+        {% block content %}{% endblock %}
+        <div class="footer">
+            <nav class="navbar fixed-bottom navbar-expand-lg navbar-dark bg-primary">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index">Home</a>
+                    </li>
+                {% if session %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/practices/mypractices">My Practices<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+                {% endif %}
+            </nav>
+        </div>
+    </body>
+</html>

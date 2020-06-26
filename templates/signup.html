@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Sign up! Swim Workout Generator{% endblock %}
+
+{% block content %}
+        <h1>Create an Account</h1>
+        <h4>Sign up so you can save your workouts!</h4>
+        <form action="/signup" method="POST">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" name="username">
+            </div>
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password">
+            <div class="form-group">
+            </div>
+            <button type="submit" class="btn btn-primary" value="Sign Up">Sign Up</button>
+        </form>
+{% endblock %}
