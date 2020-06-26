@@ -6,17 +6,24 @@ from datetime import datetime
 import model
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+import os
+from dotenv import load_dotenv
 
 
 # -- Initialization section --
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
+# load environment variables 
+load_dotenv()
+USER = os.getenv("MONGO_USERNAME")
+PASS = os.getenv("MONGO_PASSWORD")
+
 # name of database
 app.config['MONGO_DBNAME'] = 'swimming'
 
 # URI of database
-app.config['MONGO_URI'] = 'mongodb+srv://admin:w8EOtA9l6oiwRdSc@cluster0-7bt79.mongodb.net/swimming?retryWrites=true&w=majority'
+app.config['MONGO_URI'] = 'mongodb+srv://'+USER+':'+PASS+'@cluster0-7bt79.mongodb.net/swimming?retryWrites=true&w=majority'
 
 mongo = PyMongo(app)
 
