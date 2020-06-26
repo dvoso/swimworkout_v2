@@ -61,8 +61,9 @@ def signup():
             users.insert({'name' : request.form['username'], 'password' : request.form['password']})
             session['username'] = request.form['username']
             return redirect(url_for('index'))
-
-        return 'That username already exists! Try logging in.'
+        else:
+            message = "That username is already taken. Please try again"
+            return render_template('signup.html', message=message)
 
     return render_template('signup.html', time=datetime.now())
 

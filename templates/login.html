@@ -5,7 +5,7 @@
 {% block content %}
         <h1>Log in</h1>
         {% if message %}
-            <p>{{ message }}</p>
+            <p class="text-danger">{{ message }}</p>
         {% endif %}
         <form action="/login" method="POST">
             <div class="form-group">

@@ -5,6 +5,9 @@
 {% block content %}
         <h1>Create an Account</h1>
         <h4>Sign up so you can save your workouts!</h4>
+        {% if message %}
+            <p class="text-danger">{{ message }}</p>
+        {% endif %}
         <form action="/signup" method="POST">
             <div class="form-group">
                 <label for="username">Username</label>
