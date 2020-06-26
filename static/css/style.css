@@ -15,10 +15,13 @@ body {
     margin: 10%;
 }
 
+.delete {
+    margin-bottom: 10%;
+}
 .login-signup-box {
-    padding: 15%;
+    padding: 5%;
 }
 
-.navbar {
-    background-color: blueviolet;
+.generator-form {
+    padding: 5%;
 }

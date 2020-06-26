@@ -2,11 +2,21 @@
 
 {% block content %}
         <h1>Swim workout generator</h1>
-        <p>Based on the number of yards/meters, we'll make you a workout</p>
-        <form method="post" action="/results">
-            <input type="number" name="dist" placeholder="Enter"/>
-            <input type="submit" value="Submit"/>
-        </form>
+        <p><i>Based on your desired distance, we'll make you a workout</i></p>
+
+        <div class="generator-form">
+            <form method="post" action="/results">
+                <div class="row justify-content-center">
+                    <div class="form-group col-md-6">
+                        <label for="dist">Enter distance</label>
+                        <input type="number" class="form-control" name="dist"/>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-primary" value="submit">Let's Swim</button>     
+                </div>
+            </form>
+        </div>
     
     {% if session %}
         <div class="login-signup-box">

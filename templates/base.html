@@ -20,8 +20,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">Logout</a>
                     </li>
-                </ul>
                 {% endif %}
+                {% if not session %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Log In<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signuo">Signup</a>
+                    </li>
+                {% endif %}
+                </ul>
             </nav>
         </div>
     </body>
