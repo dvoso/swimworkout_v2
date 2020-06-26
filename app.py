@@ -117,3 +117,9 @@ def mypractices():
     practices = collection.find({'user' : username})
 
     return render_template('mypractices.html', practices = practices, time=datetime.now())
+
+
+# @app.route('/createpractice')
+# def create_practice():
+#     collection = mongo.db.practices
+#     username = session['username']
