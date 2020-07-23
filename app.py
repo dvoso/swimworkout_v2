@@ -63,6 +63,7 @@ def signup():
             users.insert({'name' : request.form['username'], 'password': str(hashpass, 'utf-8')})
             session['username'] = request.form['username']
             return redirect(url_for('index'))
+            # return "success"
         else:
             message = "That username is already taken. Please try again"
             return render_template('signup.html', message=message)
@@ -76,9 +77,10 @@ def login():
         login_user = users.find_one({'name' : request.form['username']})
 
         if login_user:
-            if bcrypt.checkpw(request.form['password'].encode('utf-8'), login_user['password'].encode('utf-8')):
+            if bcrypt.hashpw(request.form['password'].encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
                 session['username'] = request.form['username']
                 return redirect(url_for('index'))
+                # return "success"
         
         # if no successful match, display an error 
         message = "Unsuccessful username/password log in attempt"
