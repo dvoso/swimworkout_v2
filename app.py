@@ -8,6 +8,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import os
 from dotenv import load_dotenv
+import bcrypt
 
 
 # -- Initialization section --
@@ -58,7 +59,8 @@ def signup():
         existing_user = users.find_one({'name' : request.form['username']})
 
         if existing_user is None:
-            users.insert({'name' : request.form['username'], 'password' : request.form['password']})
+            hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
+            users.insert({'name' : request.form['username'], 'password': str(hashpass, 'utf-8')})
             session['username'] = request.form['username']
             return redirect(url_for('index'))
         else:
@@ -74,7 +76,7 @@ def login():
         login_user = users.find_one({'name' : request.form['username']})
 
         if login_user:
-            if request.form['password'] == login_user['password']:
+            if bcrypt.checkpw(request.form['password'].encode('utf-8'), login_user['password'].encode('utf-8')):
                 session['username'] = request.form['username']
                 return redirect(url_for('index'))
         
